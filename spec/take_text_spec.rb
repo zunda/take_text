@@ -17,4 +17,15 @@ RSpec.describe TakeText do
     max_bytes = 9
     expect(TakeText.take(str, max_bytes)).to eq([str, nil])
   end
+
+  it "yields expected strings" do
+    slices = %w(本日は 晴天な り).map{|e| e.encode('utf-8')}
+    string = slices.join
+    max_bytes = 10
+    result = []
+    TakeText.each_slice(string, max_bytes) do |slice|
+      result << slice
+    end
+    expect(result).to eq(slices)
+  end
 end
