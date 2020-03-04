@@ -12,7 +12,7 @@ module TakeText
     if head.bytesize > max_bytes
       # there is one extra character
       tail = head[-1] + tail
-      head = head[...-1]
+      head = head[0...-1]
     end
     return head, tail
   end
@@ -26,7 +26,7 @@ module TakeText
       if head.bytesize > max_bytes
         # there is one extra character
         extra = head[-1]
-        head = head[...-1]
+        head = head[0...-1]
       end
       yield head
     end
